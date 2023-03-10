@@ -23,6 +23,7 @@ import cv2
 from alfred.vis.image.det import visualize_det_cv2_part
 from alfred.vis.image.common import get_unique_color_by_id
 import shutil
+from pathlib import Path
 
 
 def convert(size, box):
@@ -53,8 +54,8 @@ def coco2yolo(img_r, j_f):
 
     img_ids = coco.getImgIds()
 
-    target_txt_r = os.path.join(os.path.dirname(img_r), 'yolo', 'labels')
-    target_img_r = os.path.join(os.path.dirname(img_r), 'yolo', 'images')
+    target_txt_r = os.path.join(Path(os.path.dirname(img_r)).parent, 'yolo', 'labels')
+    target_img_r = os.path.join(Path(os.path.dirname(img_r)).parent, 'yolo', 'images')
     os.makedirs(target_txt_r, exist_ok=True)
     os.makedirs(target_img_r, exist_ok=True)
 
