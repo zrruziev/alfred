@@ -24,6 +24,7 @@ from alfred.vis.image.det import visualize_det_cv2_part
 from alfred.vis.image.common import get_unique_color_by_id
 import shutil
 from pathlib import Path
+from tqdm import tqdm
 
 
 def convert(size, box):
@@ -60,7 +61,7 @@ def coco2yolo(img_r, j_f):
     os.makedirs(target_img_r, exist_ok=True)
 
     print('solving, this gonna take some while...')
-    for img_id in img_ids:
+    for img_id in tqdm(img_ids, desc='converting:'):
         img = coco.loadImgs(img_id)[0]
         # print('checking img: {}, id: {}'.format(img, img_id))
         # img['file_name'] may be not basename
